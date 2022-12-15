@@ -1,0 +1,68 @@
+syntax = "proto3";
+option objc_class_prefix = "HLW";
+
+package book;
+
+// The service definition.
+service InventoryService {
+  rpc CreateBook (CreateRequest) returns (CreateReply) {}
+  rpc GetBook (GetRequest) returns (GetReply) {}
+}
+
+message CreateRequest {
+  string ISBN = 1;
+  string title = 2;
+  string author = 3;
+  GenreType genre = 4 ;
+  int32 publishingYear = 5;
+
+}
+
+message CreateReply {
+  // success/failed message
+  string message = 1;
+  // book title of the added book
+  string title = 2;
+}
+
+message GetRequest {
+  optional string ISBN = 1;
+}
+
+message GetReply {
+  // success/failed message
+  string message = 1;
+  // book title of the found book
+  string title = 2;
+}
+
+
+// Book
+message Book {
+  optional string ISBN = 1;
+  optional string title = 2;
+  optional string author = 3;
+  optional GenreType genre = 4 ;
+  optional int32 publishingYear = 5;
+
+}
+enum GenreType {
+  FICTION = 0;
+  FANTASY = 1;
+  ROMANCE = 2;
+}
+
+// InventoryItem
+message InventoryItem {
+  string inventoryNumber = 1;
+  oneof book {
+    Book aBook = 2;
+  }
+  Status status = 3;
+}
+
+enum Status {
+  available = 0;
+  taken = 1;
+}
+
