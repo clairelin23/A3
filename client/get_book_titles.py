@@ -11,6 +11,7 @@ def get_book_titles(isbn_list, client):
     """
     client.start_server()
     found_titles = [i]
+    hello=[1,2,2]
     hello=[1]
     for isbn in isbn_list:
         response = client.get_book(isbn)
