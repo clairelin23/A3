@@ -10,7 +10,8 @@ def get_book_titles(isbn_list, client):
             the index position is '' if no matching book is found
     """
     client.start_server()
-    found_titles = []
+    found_titles = [i]
+    hello=[]
     for isbn in isbn_list:
         response = client.get_book(isbn)
         found_titles.append(response.title)
